@@ -1,0 +1,29 @@
+---
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/yourusername' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/yourusername' },
+  { label: 'Email', href: 'mailto:you@example.com' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-100 py-10 mt-auto">
+  <div class="container flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-gray-400">&copy; {year} Your Name. All rights reserved.</p>
+    <ul class="flex items-center gap-5">
+      {socialLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            class="text-sm text-gray-400 hover:text-gray-900 transition-colors"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>

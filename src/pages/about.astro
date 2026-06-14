@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = [
+  {
+    category: 'Languages',
+    items: ['TypeScript', 'Python', 'SQL'],
+  },
+  {
+    category: 'Frontend',
+    items: ['React', 'Astro', 'Tailwind CSS', 'HTML/CSS'],
+  },
+  {
+    category: 'Backend',
+    items: ['Node.js', 'PostgreSQL', 'REST APIs'],
+  },
+  {
+    category: 'Tools',
+    items: ['Git', 'Docker', 'AWS', 'Figma'],
+  },
+];
+---
+
+<BaseLayout title="About — Your Name" description="Background, skills, and experience of Your Name.">
+  <div class="section container max-w-2xl">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8">About</h1>
+
+    <div class="prose-custom mb-12">
+      <p>
+        Hey, I'm Your Name — a [your role] based in [your city]. I [brief description of
+        what you do and what you care about]. I'm currently [what you're working on or looking for].
+      </p>
+      <p>
+        Before this, I [previous experience or education]. Outside of work I [hobbies or
+        interests that show a bit of personality].
+      </p>
+      <p>
+        If you'd like to work together or just say hi, feel free to reach out via the
+        <a href="/contact">contact page</a>.
+      </p>
+    </div>
+
+    <h2 class="text-xl font-semibold text-gray-900 mb-6">Skills</h2>
+    <div class="grid sm:grid-cols-2 gap-6 mb-12">
+      {skills.map(({ category, items }) => (
+        <div>
+          <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            {category}
+          </h3>
+          <ul class="flex flex-wrap gap-2">
+            {items.map((skill) => (
+              <li class="tag">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-xl font-semibold text-gray-900 mb-6">Experience</h2>
+    <div class="space-y-6">
+      <div class="border-l-2 border-gray-200 pl-5">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+          <h3 class="font-semibold text-gray-900">Job Title</h3>
+          <span class="text-xs text-gray-400 font-mono">2023 – Present</span>
+        </div>
+        <p class="text-sm text-gray-500">Company Name</p>
+        <p class="text-sm text-gray-500 mt-2">
+          Brief description of your responsibilities and accomplishments in this role.
+        </p>
+      </div>
+      <div class="border-l-2 border-gray-200 pl-5">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+          <h3 class="font-semibold text-gray-900">Previous Role</h3>
+          <span class="text-xs text-gray-400 font-mono">2021 – 2023</span>
+        </div>
+        <p class="text-sm text-gray-500">Previous Company</p>
+        <p class="text-sm text-gray-500 mt-2">
+          Another brief description of what you did.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
