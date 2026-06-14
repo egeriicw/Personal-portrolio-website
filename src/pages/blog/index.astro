@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog — Your Name" description="Writing on software, ideas, and things I'm learning.">
+  <div class="section container max-w-2xl">
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">Blog</h1>
+    <p class="text-gray-500 mb-10">
+      Writing on software, ideas, and things I'm learning.
+    </p>
+
+    {sorted.length === 0 ? (
+      <p class="text-gray-400">No posts yet. Check back soon.</p>
+    ) : (
+      <div>
+        {sorted.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            date={post.data.date}
+            description={post.data.description}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

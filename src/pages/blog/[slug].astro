@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${post.data.title} — Your Name`} description={post.data.description}>
+  <article class="section container max-w-2xl">
+    <a href="/blog" class="text-sm text-gray-400 hover:text-gray-700 transition-colors mb-8 inline-block">
+      &larr; All Posts
+    </a>
+
+    <time class="text-xs text-gray-400 font-mono block mb-3">{formattedDate}</time>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">{post.data.title}</h1>
+    <p class="text-gray-500 mb-10">{post.data.description}</p>
+
+    <div class="prose-custom">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

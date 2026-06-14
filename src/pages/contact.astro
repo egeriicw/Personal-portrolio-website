@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const contactMethods = [
+  {
+    label: 'Email',
+    value: 'you@example.com',
+    href: 'mailto:you@example.com',
+    description: 'Best for longer conversations or project inquiries.',
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/yourusername',
+    href: 'https://github.com/yourusername',
+    description: "See what I'm building and open source contributions.",
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/yourusername',
+    href: 'https://linkedin.com/in/yourusername',
+    description: 'Professional background and work history.',
+  },
+];
+---
+
+<BaseLayout title="Contact — Your Name" description="Get in touch with Your Name.">
+  <div class="section container max-w-2xl">
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">Contact</h1>
+    <p class="text-gray-500 mb-10">
+      I'm always open to interesting conversations, collaboration, or just a hello.
+      Pick whichever channel works best for you.
+    </p>
+
+    <div class="space-y-6">
+      {contactMethods.map(({ label, value, href, description }) => (
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-300 transition-colors">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">{label}</p>
+              <a
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="text-gray-900 font-medium hover:text-gray-600 transition-colors"
+              >
+                {value}
+              </a>
+              <p class="text-sm text-gray-500 mt-2">{description}</p>
+            </div>
+            <a
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="text-gray-400 hover:text-gray-700 transition-colors flex-shrink-0 mt-1"
+              aria-label={`Open ${label}`}
+            >
+              &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

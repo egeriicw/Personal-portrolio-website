@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #fafafa;
+  --color-fg: #111111;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply min-h-screen flex flex-col;
+    line-height: 1.7;
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  h1, h2, h3, h4 {
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-4xl mx-auto px-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-150;
+  }
+
+  .btn-primary {
+    @apply btn bg-gray-900 text-white hover:bg-gray-700;
+  }
+
+  .btn-secondary {
+    @apply btn border border-gray-300 text-gray-700 hover:border-gray-500 hover:text-gray-900;
+  }
+
+  .tag {
+    @apply inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .prose-custom {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .prose-custom h2 {
+    @apply text-2xl font-semibold text-gray-900 mt-10 mb-4;
+  }
+
+  .prose-custom p {
+    @apply mb-5;
+  }
+
+  .prose-custom a {
+    @apply underline underline-offset-2 text-gray-900 hover:text-gray-600;
+  }
+
+  .prose-custom ul {
+    @apply list-disc pl-5 mb-5 space-y-1;
+  }
+}
